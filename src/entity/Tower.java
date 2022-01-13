@@ -7,11 +7,15 @@ import java.util.stream.Stream;
 public class Tower {
     private final Set<Floor> floors;
 
-    public Tower(int capacity) {
-        floors = generateFloors(capacity);
+    public Tower(int floorCapacity) {
+        floors = generateFloors(floorCapacity);
     }
 
-    private Set<Floor> generateFloors(int capacity) {
-        return Stream.generate(Floor::new).limit(capacity).collect(Collectors.toSet());
+    public Set<Floor> getFloors() {
+        return floors;
+    }
+
+    private Set<Floor> generateFloors(int floorCapacity) {
+        return Stream.generate(Floor::new).limit(floorCapacity).collect(Collectors.toSet());
     }
 }

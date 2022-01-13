@@ -6,8 +6,9 @@ import entity.Room;
 import helper.RoomTypeEnum;
 
 import javax.naming.NameNotFoundException;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RoomBuilder {
     private Room room;
@@ -17,11 +18,7 @@ public class RoomBuilder {
     }
 
     public RoomBuilder begin(RoomTypeEnum roomType) {
-        try {
-            room = RoomTypeEnum.getByTypeName(roomType.getTypeName());
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        room = RoomTypeEnum.getByTypeName(roomType.getTypeName());
         return this;
     }
 
@@ -40,7 +37,15 @@ public class RoomBuilder {
     }
 
     public static Room buildRandom() {
-        return null;
+        List<RoomTypeEnum> rooms = Arrays.asList(RoomTypeEnum.values());
+        RoomTypeEnum randomType = rooms.get(new Random().nextInt(rooms.size()));
+
+        Room room = RoomTypeEnum.getByTypeName(randomType.getTypeName());
+
+        Chest chest = new Chest();
+
+        room.setChest(chest);
+        return room;
     }
 
     public RoomBuilder clear() {

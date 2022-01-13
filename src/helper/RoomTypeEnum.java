@@ -2,9 +2,7 @@ package helper;
 
 import entity.*;
 
-import javax.naming.NameNotFoundException;
-
-public enum RoomTypeEnum {
+public enum RoomTypeEnum implements TypeEnum {
     BOSS(new BossRoom()),
     ENEMY(new EnemyRoom()),
     CHEST(new ChestRoom());
@@ -19,12 +17,12 @@ public enum RoomTypeEnum {
         return room.getClass().getTypeName();
     }
 
-    public static Room getByTypeName(String typeName) throws NameNotFoundException {
-        for (RoomTypeEnum roomType: RoomTypeEnum.values()) {
+    public static Room getByTypeName(String typeName) {
+        for (RoomTypeEnum roomType : RoomTypeEnum.values()) {
             if (roomType.getTypeName().equals(typeName)) {
                 return roomType.room;
             }
         }
-        throw new NameNotFoundException("Сущности комнаты с таким названием не существует.");
+        throw new NullPointerException("Сущности комнаты с таким названием не существует.");
     }
 }

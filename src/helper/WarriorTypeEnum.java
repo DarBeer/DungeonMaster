@@ -5,7 +5,7 @@ import entity.Player;
 import entity.Skeleton;
 import entity.Warrior;
 
-public enum WarriorTypeEnum {
+public enum WarriorTypeEnum implements TypeEnum{
     BOSS(new Boss()),
     ENEMY(new Skeleton()),
     PLAYER(new Player());

@@ -8,10 +8,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Floor {
-    private Set<Room> rooms = new HashSet<>(5);
+    private final Set<Room> rooms;
 
     public Floor() {
+        rooms = generateRandomRooms();
+    }
 
+    public Set<Room> getRooms() {
+        return rooms;
     }
 
     private Set<Room> generateRandomRooms() {

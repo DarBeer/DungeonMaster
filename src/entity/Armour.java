@@ -1,10 +1,16 @@
 package entity;
 
+import java.util.Random;
+
 public class Armour implements Item {
-    private int health;
+    private final int health;
+
+    public Armour() {
+        health = new Random().nextInt(5);
+    }
 
     @Override
     public String getInfo() {
-        return String.valueOf(health);
+        return "Броня на +" + health + " здоровья.";
     }
 }
