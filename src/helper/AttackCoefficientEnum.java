@@ -2,7 +2,7 @@ package helper;
 
 public enum AttackCoefficientEnum {
     BOSS(0.3f),
-    ENEMY(0.2f),
+    SKELETON(0.2f),
     PLAYER(10);
 
     private final float attackCoefficient;

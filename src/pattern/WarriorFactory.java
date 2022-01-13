@@ -1,10 +1,7 @@
 package pattern;
 
+import entity.*;
 import helper.WarriorTypeEnum;
-import entity.Boss;
-import entity.Enemy;
-import entity.Player;
-import entity.Warrior;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +11,7 @@ public class WarriorFactory {
 
     {
         warriors.add(new Boss());
-        warriors.add(new Enemy());
+        warriors.add(new Skeleton());
         warriors.add(new Player());
     }
 
