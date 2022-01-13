@@ -1,19 +1,31 @@
 package helper;
 
-import entity.*;
+import entity.Boss;
+import entity.Player;
+import entity.Skeleton;
+import entity.Warrior;
 
 public enum WarriorTypeEnum {
-    BOSS(Boss.class.getTypeName()),
-    ENEMY(Enemy.class.getTypeName()),
-    PLAYER(Player.class.getTypeName());
+    BOSS(new Boss()),
+    ENEMY(new Skeleton()),
+    PLAYER(new Player());
 
-    private final String typeName;
+    private final Warrior warrior;
 
-    WarriorTypeEnum(String typeName) {
-        this.typeName = typeName;
+    WarriorTypeEnum(Warrior warrior) {
+        this.warrior = warrior;
     }
 
     public String getTypeName() {
-        return typeName;
+        return warrior.getClass().getTypeName();
+    }
+
+    public static Warrior getByTypeName(String typeName) {
+        for (WarriorTypeEnum warriorType: WarriorTypeEnum.values()) {
+            if (warriorType.getTypeName().equals(typeName)) {
+                return warriorType.warrior;
+            }
+        }
+        throw new NullPointerException("Сущности воина с таким названием не существует.");
     }
 }
