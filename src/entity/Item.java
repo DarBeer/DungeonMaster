@@ -1,5 +1,5 @@
 package entity;
 
 public interface Item {
-    String getInfo();
+    String getInfo(Warrior warrior);
 }

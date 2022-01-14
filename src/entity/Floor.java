@@ -1,7 +1,9 @@
 package entity;
 
+import helper.RoomTypeEnum;
 import pattern.RoomBuilder;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,6 +21,16 @@ public class Floor {
     }
 
     private Set<Room> generateRandomRooms() {
-        return Stream.generate(RoomBuilder::buildRandom).limit(5).collect(Collectors.toSet());
+        Set<Room> rooms = Stream.generate(RoomBuilder::buildRandom).limit(4).collect(Collectors.toSet());
+
+        Room room = RoomBuilder.newBuilder()
+                .begin(RoomTypeEnum.BOSS)
+                .chest(new Chest())
+                .enemies(Collections.singleton(new Boss()))
+                .build();
+
+        rooms.add(room);
+
+        return rooms;
     }
 }

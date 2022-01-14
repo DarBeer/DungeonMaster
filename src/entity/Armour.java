@@ -10,7 +10,7 @@ public class Armour implements Item {
     }
 
     @Override
-    public String getInfo() {
-        return "Броня на +" + health + " здоровья.";
+    public String getInfo(Warrior warrior) {
+        return "Броня увеличила итоговое здоровье до " + health + warrior.health + " здоровья.";
     }
 }

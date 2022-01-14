@@ -3,6 +3,8 @@ package pattern;
 import entity.Chest;
 import entity.Enemy;
 import entity.Room;
+import entity.Skeleton;
+import helper.EnemyTypeEnum;
 import helper.RoomTypeEnum;
 
 import javax.naming.NameNotFoundException;
@@ -39,11 +41,14 @@ public class RoomBuilder {
     public static Room buildRandom() {
         List<RoomTypeEnum> rooms = Arrays.asList(RoomTypeEnum.values());
         RoomTypeEnum randomType = rooms.get(new Random().nextInt(rooms.size()));
+        Chest chest = new Chest();
+        Set<Enemy> enemies = Stream.generate(Skeleton::new)
+                .limit(new Random().nextInt(5))
+                .collect(Collectors.toSet());
 
         Room room = RoomTypeEnum.getByTypeName(randomType.getTypeName());
 
-        Chest chest = new Chest();
-
+        room.setEnemies(enemies);
         room.setChest(chest);
         return room;
     }
